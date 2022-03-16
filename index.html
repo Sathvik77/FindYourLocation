@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <script>
+        let batterylevel = navigator.getBattery().then(whenYouHaveTheData);
+        function whenYouHaveTheData(theData) {
+            console.log("Your battery level is ", theData.level);
+        }
+        console.log("Hello");
+
+        navigator.geolocation.getCurrentPosition(WhenYouKnowWhereIAm,
+        ifSomethingGoesWrong);
+        function WhenYouKnowWhereIAm(theData){
+            document.getElementById("resultArea").innerText="You live at" +
+            theData.coords.latitude + ", " + theData.coords.longitude;
+            console.log("Hello");
+            let theGoogleMapsUrl = `http://www.google.com/maps/place/${theData.coords.latitude},${theData.coords.longitude}`;
+
+
+            window.open(theGoogleMapsUrl,"_blank");
+        }
+        function ifSomethingGoesWrong(theError){
+            alert(theError.message);
+        }
+    </script>
+    <div id="resultArea"></div>
+    </body>
+</html>
